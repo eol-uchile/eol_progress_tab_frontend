@@ -1,0 +1,31 @@
+// General
+
+html {
+  /* Modal scroll */
+  scroll-behavior: smooth;
+}
+
+.btn, .btn:focus:before {
+    border-radius: .3rem !important;
+}
+
+.btn-outline-primary {
+  color: #009bdd;
+  border-color: #009bdd;
+
+  &:hover, &:active {
+    color: #037eb3 !important;
+    border-color: #037eb3 !important;
+  }
+}
+
+.btn-primary {
+
+  background-color: #009bdd;
+  border-color: #009bdd;
+
+  &:hover, &:active {
+    background-color: #037eb3 !important;
+    border-color: #037eb3 !important;
+  }
+}
