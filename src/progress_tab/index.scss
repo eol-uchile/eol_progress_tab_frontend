@@ -29,3 +29,16 @@ html {
     border-color: #037eb3 !important;
   }
 }
+
+
+// Grids
+
+.progress-tab-grid {
+  font-size: 0.9em;
+  border-radius: 7px;
+  color: var(--text-grey);
+  
+  a {
+    text-decoration:none;
+  }
+}
