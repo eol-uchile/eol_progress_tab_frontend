@@ -14,7 +14,7 @@ export default function ProgressTabPage() {
           <AboutGrid courseId={ courseId }/>
         </div>
         <div className="col-xl-7 order-xl-1 p-3">
-          <ProgressGrid/>
+          <ProgressGrid courseId={ courseId }/>
         </div>
       </div>
     </div>

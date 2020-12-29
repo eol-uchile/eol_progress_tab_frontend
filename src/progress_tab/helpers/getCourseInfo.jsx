@@ -11,7 +11,7 @@ export const getCourseData = async ( courseId ) => {
     const response = await fetch(url, { credentials: "same-origin" });
     if(response.status == 200) {
         const data = await response.json();
-        return {
+        const course_data = {
             start_date          : data.start_date,
             end_date            : data.end_date,
             effort              : data.effort,
@@ -19,6 +19,7 @@ export const getCourseData = async ( courseId ) => {
             min_grade_approval  : data.min_grade_approval.toFixed(1).toString(),
             display_name        : data.display_name.toUpperCase()
         };
+        return course_data;
     } else {
         return {};
     }

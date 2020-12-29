@@ -41,4 +41,20 @@ html {
   a {
     text-decoration:none;
   }
+
+  .table th, .table td {
+    text-align: center;
+    vertical-align: middle !important;
+  }
+
+  .table .thead-primary th {
+    color: #fff;
+    background-color: #3f4a4e;
+    border-color:  #3f4a4e;
+    padding: 0px;
+  }
+
+  .table .table-footer {
+    background-color: #dbdfe0;
+  }
 }
