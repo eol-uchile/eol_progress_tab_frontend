@@ -16,7 +16,14 @@ export const getStudentData = async ( courseId ) => {
                     grade_percent   : `${Math.round(c.grade_percent * 100)}%`,
                     grade_scaled    : c.grade_scaled.toFixed(1).toString()
                 }
-            })
+            }),
+            certificate_data : {
+                url : data.certificate_data?.url,
+                title : data.certificate_data?.title,
+                msg : data.certificate_data?.msg,
+                button_msg : data.certificate_data?.button_msg,
+                button_method : data.certificate_data?.button_method
+            }
         };
         return student_data;
     } else {

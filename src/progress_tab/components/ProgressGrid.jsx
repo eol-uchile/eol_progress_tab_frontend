@@ -1,10 +1,17 @@
 import React from 'react';
-import { Spinner } from '@edx/paragon';
+import { Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 import { useFetchStudentData } from '../hooks/useFetchStudentData';
+import { CertificateContainer } from './CertificateContainer';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 export const ProgressGrid = ( { courseId } ) => {
-    const { student_data, loading } = useFetchStudentData( courseId );
+    const [state, setState] = useFetchStudentData( courseId );
+    const { student_data, loading } = state;
     return (
+        <>
+        { student_data.certificate_data?.url && <CertificateContainer certificate={student_data.certificate_data} setStudentState={setState} /> }
         <div className="progress-tab-grid shadow-lg bg-white p-3">
             <h4 className="text-center">Calificaciones de '{student_data.username}'</h4>
             { loading && <Spinner animation="border" variant="primary" className="d-flex mx-auto mt-2 "/> }
@@ -20,7 +27,7 @@ export const ProgressGrid = ( { courseId } ) => {
                 <tbody>
                     {
                         student_data.category_grades?.map( categ => (
-                            <tr>
+                            <tr key={categ.category}>
                                 <th>{categ.category}</th>
                                 <td>{categ.weight}</td>
                                 <td>{categ.grade_percent}</td>
@@ -29,12 +36,27 @@ export const ProgressGrid = ( { courseId } ) => {
                         ))
                     }
                     <tr className="table-footer">
-                        <th scope="row" colspan="2" className="text-right">Promedio Final</th>
+                        <th scope="row" colSpan="2" className="text-right">Promedio Final</th>
                         <td>{student_data.final_grade_percent}</td>
-                        <th className={ student_data.passed && "text-success"}>{student_data.final_grade_scaled}</th>
+                        <OverlayTrigger
+                            key='final-grade-tooltip'
+                            placement='bottom'
+                            overlay={
+                                <Tooltip id={`tooltip-final-grade`}>
+                                Este valor es calculado en base al porcentaje de logro final (promedio).
+                                </Tooltip>
+                            }
+                        >
+                            <th className={ student_data.passed && "text-success"}>
+                                {student_data.final_grade_scaled}
+                                <FontAwesomeIcon icon={faInfoCircle} className="ml-1" />
+                            </th>
+                        </OverlayTrigger>
+                        
                     </tr>
                 </tbody>
             </table>
         </div>
+        </>
     )
 }
