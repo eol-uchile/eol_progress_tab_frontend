@@ -1,17 +1,13 @@
 import React from 'react';
 import { Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
-import { useFetchStudentData } from '../hooks/useFetchStudentData';
-import { CertificateContainer } from './CertificateContainer';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-export const ProgressGrid = ( { courseId } ) => {
-    const [state, setState] = useFetchStudentData( courseId );
-    const { student_data, loading } = state;
+export const ProgressGrid = ( { studentState } ) => {
+    const { student_data, loading } = studentState;
     return (
         <>
-        { student_data.certificate_data?.url && <CertificateContainer certificate={student_data.certificate_data} setStudentState={setState} /> }
         <div className="progress-tab-grid shadow-lg bg-white p-3">
             <h4 className="text-center">Calificaciones de '{student_data.username}'</h4>
             { loading && <Spinner animation="border" variant="primary" className="d-flex mx-auto mt-2 "/> }

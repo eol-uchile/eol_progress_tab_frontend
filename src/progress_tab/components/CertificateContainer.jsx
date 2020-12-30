@@ -1,25 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, Button } from '@edx/paragon';
-import { generateCertificates } from '../helpers/generateCertificates';
+import { useHandleCertificates } from '../hooks/useHandleCertificates';
 
 export const CertificateContainer = ( { certificate, setStudentState } ) => {
-    const [buttonDisabled, setButtonDisabled] = useState(false);
     const { title, url, msg, button_msg, button_method } = certificate;
-    const handleClick = () => {
-        setButtonDisabled(true);
-        generateCertificates(url)
-            .then((status) => {
-                if (status) {
-                    // trigger useEffect and update certificate url
-                    setStudentState((prevState) => ({
-                        ...prevState, 
-                        called : Date.now(),
-                        loading: true
-                    }));
-                }
-                setButtonDisabled(false);
-            });
-    }
+    const [ buttonDisabled, handleClick ] = useHandleCertificates( url, setStudentState );
     return (
         <Alert variant="success">
             <Alert.Heading>{ title }</Alert.Heading>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Spinner } from '@edx/paragon';
 import { useFetchCourseInfo } from '../hooks/useFetchCourseInfo';
 
-export const AboutGrid = ( { courseId } ) => {
+export const AboutGrid = React.memo(( { courseId } ) => {
     const { course, loading } = useFetchCourseInfo( courseId );
     const help_href = encodeURI(`/contact_form?course=${course.display_name}`);
     return (
@@ -50,4 +50,4 @@ export const AboutGrid = ( { courseId } ) => {
             </a>
         </div>
     )
-}
+});
