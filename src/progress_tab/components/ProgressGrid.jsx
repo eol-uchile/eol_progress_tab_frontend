@@ -4,8 +4,13 @@ import { Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
-export const ProgressGrid = ( { studentState } ) => {
+export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive } ) => {
+    console.log("ProgressGrid");
     const { student_data, loading } = studentState;
+    const handleClick = ( category_grade ) => {
+        setCategoryGradeActive(category_grade);
+        console.log(category_grade);
+    }
     return (
         <>
         <div className="progress-tab-grid shadow-lg bg-white p-3">
@@ -23,7 +28,11 @@ export const ProgressGrid = ( { studentState } ) => {
                 <tbody>
                     {
                         student_data.category_grades?.map( categ => (
-                            <tr key={categ.category}>
+                            <tr key={categ.category}
+                                onClick= { () => {
+                                    handleClick(categ);
+                                } }
+                            >
                                 <th>{categ.category}</th>
                                 <td>{categ.weight}</td>
                                 <td>{categ.grade_percent}</td>
@@ -52,7 +61,8 @@ export const ProgressGrid = ( { studentState } ) => {
                     </tr>
                 </tbody>
             </table>
+            <p className="text-right text-muted">Haz clic en una evaluación para visualizar su progreso en detalle.</p>
         </div>
         </>
     )
-}
+});

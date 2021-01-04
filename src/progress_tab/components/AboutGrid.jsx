@@ -3,6 +3,7 @@ import { Button, Spinner } from '@edx/paragon';
 import { useFetchCourseInfo } from '../hooks/useFetchCourseInfo';
 
 export const AboutGrid = React.memo(( { courseId } ) => {
+    console.log("AboutGrid");
     const { course, loading } = useFetchCourseInfo( courseId );
     const help_href = encodeURI(`/contact_form?course=${course.display_name}`);
     return (

@@ -7,6 +7,7 @@ export const getCourseId = ( ) =>  window.location.hash.substring(1).split(/[\/]
 
 // Get course data
 export const getCourseData = async ( courseId ) => {
+    console.log("getCourseData");
     const url = `/courses/${ courseId }/eol_progress_tab/course_info`;
     const response = await fetch(url, { credentials: "same-origin" });
     if(response.status == 200) {

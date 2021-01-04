@@ -2,7 +2,8 @@ import React from 'react';
 import { Alert, Button } from '@edx/paragon';
 import { useHandleCertificates } from '../hooks/useHandleCertificates';
 
-export const CertificateContainer = ( { certificate, setStudentState } ) => {
+export const CertificateContainer = React.memo(( { certificate, setStudentState } ) => {
+    console.log("CertificateContainer");
     const { title, url, msg, button_msg, button_method } = certificate;
     const [ buttonDisabled, handleClick ] = useHandleCertificates( url, setStudentState );
     return (
@@ -32,4 +33,4 @@ export const CertificateContainer = ( { certificate, setStudentState } ) => {
             </div>
         </Alert>
     )
-}
+});

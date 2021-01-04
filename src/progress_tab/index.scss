@@ -54,7 +54,27 @@ html {
     padding: 0px;
   }
 
+  .table tbody tr {
+    cursor: pointer;
+
+    &:hover {
+      background-color: #dbdfe0a8;
+    }
+
+  }
+
   .table .table-footer {
-    background-color: #dbdfe0;
+    background-color: #dbdfe0 !important;
+    cursor: text;
+  }
+}
+
+// Progress detail
+
+.progress-detail {
+  dt, dd {
+    display: inline-block;
+    margin-right: 20px;
+    padding-right: 1em;
   }
 }
