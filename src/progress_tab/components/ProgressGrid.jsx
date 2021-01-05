@@ -1,9 +1,6 @@
 import React from 'react';
 import { Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-
 export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive } ) => {
     console.log("ProgressGrid");
     const { student_data, loading } = studentState;
@@ -22,7 +19,6 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
                         <th scope="col">Evaluación</th>
                         <th scope="col">Peso</th>
                         <th scope="col">Calificación <br/>(0 - 100)%</th>
-                        <th scope="col">Calificación <br/>(1.0 - 7.0)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,27 +31,32 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
                             >
                                 <th>{categ.category}</th>
                                 <td>{categ.weight}</td>
-                                <td>{categ.grade_percent}</td>
-                                <th>{categ.grade_scaled}</th>
+                                <OverlayTrigger
+                                    key='final-grade-tooltip'
+                                    placement='bottom'
+                                    overlay={
+                                        <Tooltip id={`tooltip-final-grade`}>
+                                        Equivalente a una nota <strong>{categ.grade_scaled}</strong> aproximadamente (escala 1.0 - 7.0).
+                                        </Tooltip>
+                                    }
+                                > 
+                                    <td>{categ.grade_percent}</td>
+                                </OverlayTrigger>
                             </tr>
                         ))
                     }
                     <tr className="table-footer">
                         <th scope="row" colSpan="2" className="text-right">Promedio Final</th>
-                        <td>{student_data.final_grade_percent}</td>
                         <OverlayTrigger
                             key='final-grade-tooltip'
                             placement='bottom'
                             overlay={
                                 <Tooltip id={`tooltip-final-grade`}>
-                                Este valor es calculado en base al porcentaje de logro final (promedio).
+                                Equivalente a una nota <strong>{student_data.final_grade_scaled}</strong> aproximadamente (escala 1.0 - 7.0).
                                 </Tooltip>
                             }
                         >
-                            <th className={ student_data.passed && "text-success"}>
-                                {student_data.final_grade_scaled}
-                                <FontAwesomeIcon icon={faInfoCircle} className="ml-1" />
-                            </th>
+                            <td>{student_data.final_grade_percent}</td>
                         </OverlayTrigger>
                         
                     </tr>
