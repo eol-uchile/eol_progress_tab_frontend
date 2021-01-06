@@ -19,7 +19,7 @@ export const getStudentData = async ( courseId ) => {
     }
 }
 
-export const _certificate_data = data => ({
+const _certificate_data = data => ({
     url : data.certificate_data?.url,
     title : data.certificate_data?.title,
     msg : data.certificate_data?.msg,
@@ -27,23 +27,30 @@ export const _certificate_data = data => ({
     button_method : data.certificate_data?.button_method
 });
 
-export const _category_grades = c => ({
+const _category_grades = c => ({
     category        : c.category,
     weight          : `${(c.weight * 100)}%`,
+    drop_count      : c.drop_count,
     grade_percent   : `${Math.round(c.grade_percent * 100)}%`,
     grade_scaled    : c.grade_scaled.toFixed(1).toString(),
     detail          : c.detail.map( _detail )
 });
 
-export const _detail = d => ({
-    subsection      : d.subsection_display_name,
+const _detail = d => ({
+    subsection      : _unescapeHTML(d.subsection_display_name),
     url             : d.url,
     total_earned    : d.total_earned,
     total_possible  : d.total_possible,
     problem_scores  : d.problem_scores.map( _problem_scores )
 });
 
-export const _problem_scores = score => ({
+const _problem_scores = score => ({
     earned          : score.earned,
     possible        : score.possible
 });
+
+const _unescapeHTML = string => {
+   var elt = document.createElement("span");
+   elt.innerHTML = string;
+   return elt.innerText;
+}

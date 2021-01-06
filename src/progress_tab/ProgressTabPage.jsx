@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+
 import { useResizeIFrame } from "./hooks/useResizeIFrame";
+import { useFetchStudentData } from './hooks/useFetchStudentData';
+
 import { getCourseId } from "./helpers/getCourseInfo";
+
 import { AboutGrid } from "./components/AboutGrid";
 import { ProgressGrid } from "./components/ProgressGrid";
 import { ProgressDetailGrid } from "./components/ProgressDetailGrid";
-
-import { useFetchStudentData } from './hooks/useFetchStudentData';
 import { CertificateContainer } from './components/CertificateContainer';
 
 export default function ProgressTabPage() {

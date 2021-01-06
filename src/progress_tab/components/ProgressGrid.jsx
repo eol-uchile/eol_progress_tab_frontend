@@ -62,7 +62,7 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
                     </tr>
                 </tbody>
             </table>
-            <p className="text-right text-muted">Haz clic en una evaluación para visualizar su progreso en detalle.</p>
+            <p className="text-right text-muted small">Haz clic en una evaluación para visualizar su progreso en detalle.</p>
         </div>
         </>
     )
