@@ -1,13 +1,12 @@
 import React from 'react';
-import { Button, Spinner } from '@edx/paragon';
+import { Button, Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 import { useFetchCourseInfo } from '../hooks/useFetchCourseInfo';
 
 export const AboutGrid = React.memo(( { courseId } ) => {
-    console.log("AboutGrid");
     const { course, loading } = useFetchCourseInfo( courseId );
     const help_href = encodeURI(`/contact_form?course=${course.display_name}`);
     return (
-        <div className="progress-tab-grid shadow-lg bg-white p-3">
+        <div className="tab-grid shadow-lg bg-white p-3">
             <h4 className="text-center">Información General</h4>
             { loading && <Spinner animation="border" variant="primary" className="d-flex mx-auto mt-2 "/> }
             <table className="table table-borderless mb-0">
@@ -31,15 +30,19 @@ export const AboutGrid = React.memo(( { courseId } ) => {
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" className="text-left">Escala de Calificación</th>
-                        <td className="text-right">
-                            { course.grade_cutoff }
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row" className="text-left">Calificación Mínima de Aprobación</th>
                         <td className="text-right">
-                            { course.min_grade_approval }
+                            <OverlayTrigger
+                                key='final-grade-tooltip'
+                                placement='left'
+                                overlay={
+                                    <Tooltip id={`tooltip-final-grade`}>
+                                    Equivalente a una nota <strong>{ course.min_grade_approval }</strong>* aproximadamente (escala 1.0 - 7.0).
+                                    </Tooltip>
+                                }
+                            > 
+                                <span>{ course.grade_cutoff }</span>
+                            </OverlayTrigger>
                         </td>
                     </tr>
                 </tbody>

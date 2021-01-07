@@ -12,7 +12,6 @@ import { CertificateContainer } from './components/CertificateContainer';
 
 export default function ProgressTabPage() {
   useResizeIFrame(); // Resize Iframe on height changes
-  console.log("ProgressTabPage");
   const courseId = getCourseId();
   const [studentState, setStudentState] = useFetchStudentData( courseId );
   const [categoryGradeActive, setCategoryGradeActive] = useState({});
@@ -40,7 +39,7 @@ export default function ProgressTabPage() {
           </div>
         )
       }
-      
+      <p className="text-right text-muted small mt-3">(*) Las notas con escala 1.0 a 7.0 son <u>aproximaciones</u> calculadas en base a las calificaciones con escala 0% a 100%.</p>
     </div>
   );
 }

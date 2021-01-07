@@ -9,7 +9,7 @@ export const useHandleCertificates = ( url, setStudentState ) => {
         generateCertificates(url)
             .then((status) => {
                 if (status) {
-                    // trigger useEffect and update certificate url
+                    // trigger useEffect (useFetchStudentData) and update certificate url
                     setStudentState((prevState) => ({
                         ...prevState, 
                         called : Date.now(),

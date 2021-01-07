@@ -33,7 +33,7 @@ html {
 
 // Grids
 
-.progress-tab-grid {
+.tab-grid {
   font-size: 0.9em;
   border-radius: 7px;
   color: var(--text-grey);
@@ -54,7 +54,7 @@ html {
     padding: 0px;
   }
 
-  .table tbody tr {
+  &.progress-tab-grid .table tbody tr {
     cursor: pointer;
 
     &:hover {

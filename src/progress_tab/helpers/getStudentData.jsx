@@ -1,6 +1,7 @@
+import { date_format, unescapeHTML } from "./utils";
+
 // Get student data
 export const getStudentData = async ( courseId ) => {
-    console.log("getStudentData");
     const url = `/courses/${ courseId }/eol_progress_tab/student_data`;
     const response = await fetch(url, { credentials: "same-origin" });
     if(response.status == 200) {
@@ -31,16 +32,20 @@ const _category_grades = c => ({
     category        : c.category,
     weight          : `${(c.weight * 100)}%`,
     drop_count      : c.drop_count,
+    dropped_message : _dropped_message( c.detail.length - c.drop_count ),
     grade_percent   : `${Math.round(c.grade_percent * 100)}%`,
     grade_scaled    : c.grade_scaled.toFixed(1).toString(),
     detail          : c.detail.map( _detail )
 });
 
 const _detail = d => ({
-    subsection      : _unescapeHTML(d.subsection_display_name),
+    subsection      : unescapeHTML(d.subsection_display_name),
+    due             : d.due ? date_format(d.due) : undefined,
+    attempted       : d.attempted,
     url             : d.url,
     total_earned    : d.total_earned,
     total_possible  : d.total_possible,
+    percent         : `${Math.round(d.total_earned / d.total_possible * 100)}%`,
     problem_scores  : d.problem_scores.map( _problem_scores )
 });
 
@@ -49,8 +54,7 @@ const _problem_scores = score => ({
     possible        : score.possible
 });
 
-const _unescapeHTML = string => {
-   var elt = document.createElement("span");
-   elt.innerHTML = string;
-   return elt.innerText;
+const _dropped_message = count => {
+    const detail_message = count == 1 ? 'la mejor calificación' : `las ${count} mejores calificaciones`;
+    return `En esta evaluación se considera solo ${ detail_message }.`;
 }

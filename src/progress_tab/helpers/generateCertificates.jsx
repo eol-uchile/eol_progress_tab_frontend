@@ -7,7 +7,7 @@ export const generateCertificates = async( url ) => {
             return true;
         })
         .catch( (error) => {
-            console.log(error);
+            console.error(error);
             return false;
         });
     return status;
