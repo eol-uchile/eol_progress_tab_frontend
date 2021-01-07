@@ -13,8 +13,8 @@ export const getCourseData = async ( courseId ) => {
     if(response.status == 200) {
         const data = await response.json();
         const course_data = {
-            start_date          : data.start_date,
-            end_date            : data.end_date,
+            start_date          : _date_format(data.start_date),
+            end_date            : _date_format(data.end_date),
             effort              : data.effort,
             grade_cutoff        : `${(data.grade_cutoff * 100)}%`,
             min_grade_approval  : data.min_grade_approval.toFixed(1).toString(),
@@ -24,4 +24,9 @@ export const getCourseData = async ( courseId ) => {
     } else {
         return {};
     }
+}
+
+const _date_format = date => {
+    const formatted_date = new Date(date);
+    return formatted_date.toLocaleString('es-CL');
 }
