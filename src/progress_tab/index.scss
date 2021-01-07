@@ -61,12 +61,13 @@ html {
       background-color: #dbdfe0a8;
     }
 
+    &.table-footer {
+      background-color: #dbdfe0 !important;
+      cursor: text;
+    }
+
   }
 
-  .table .table-footer {
-    background-color: #dbdfe0 !important;
-    cursor: text;
-  }
 }
 
 // Progress detail
