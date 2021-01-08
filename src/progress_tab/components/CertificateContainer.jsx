@@ -20,7 +20,7 @@ export const CertificateContainer = React.memo(( { certificate, setStudentState 
                         { 
                             button_method == 'GET' && (
                                 <a href={ url } target="_blank">
-                                    <Button variant="success" >{ button_msg }</Button>
+                                    <Button variant="success" disabled={ url=='#' } >{ button_msg }</Button>
                                 </a>
                             ) 
                         }
