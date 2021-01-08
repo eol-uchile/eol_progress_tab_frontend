@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useResizeIFrame } from "./hooks/useResizeIFrame";
 import { useFetchStudentData } from './hooks/useFetchStudentData';
 
-import { getCourseId } from "./helpers/getCourseInfo";
+import { getTabIds } from "./helpers/utils";
 
 import { AboutGrid } from "./components/AboutGrid";
 import { ProgressGrid } from "./components/ProgressGrid";
@@ -12,8 +12,8 @@ import { CertificateContainer } from './components/CertificateContainer';
 
 export default function ProgressTabPage() {
   useResizeIFrame(); // Resize Iframe on height changes
-  const courseId = getCourseId();
-  const [studentState, setStudentState] = useFetchStudentData( courseId );
+  const [userId, courseId] = getTabIds();
+  const [studentState, setStudentState] = useFetchStudentData( courseId, userId );
   const [categoryGradeActive, setCategoryGradeActive] = useState({});
   return (
     <div id="content" className="container">

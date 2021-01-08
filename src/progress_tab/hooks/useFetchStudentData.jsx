@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getStudentData } from "../helpers/getStudentData";
 
-export const useFetchStudentData = ( courseId ) => {
+export const useFetchStudentData = ( courseId, userId ) => {
     const [state, setState] = useState({
         called      : Date.now(),
         loading     : true,
@@ -9,7 +9,7 @@ export const useFetchStudentData = ( courseId ) => {
     })
 
     useEffect(() => {
-        getStudentData ( courseId )
+        getStudentData ( courseId, userId )
         .then( student_data => {
             setState({
                 ...state,
