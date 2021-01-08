@@ -6,7 +6,6 @@ import { SubsectionItem } from './SubsectionItem';
 export const ProgressDetailGrid = React.memo(( { categoryGrade } ) => {
     useShowDroppedSubsections( categoryGrade );
     const ref = useScrollDetail(categoryGrade);
-    const doppedMessage = `En esta evaluación se consideran solo las ${ categoryGrade.detail?.length - categoryGrade.drop_count } mejores calificaciones`;
 
     return (
         <div className="progress-detail shadow-lg bg-white p-3" ref={ ref }>
