@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Badge, OverlayTrigger, Tooltip } from '@edx/paragon';
 
 export const SubsectionItem = ( { detail, dropped_message }) => {
@@ -42,4 +43,9 @@ export const SubsectionItem = ( { detail, dropped_message }) => {
             <hr/>
         </div>
     )
+}
+
+SubsectionItem.propTypes = {
+    detail          : PropTypes.object.isRequired,
+    dropped_message : PropTypes.string.isRequired
 }

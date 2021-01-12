@@ -10,7 +10,7 @@ export const getStudentData = async ( courseId, userId ) => {
             username            : data.username,
             passed              : data.passed,
             final_grade_percent : `${Math.round(data.final_grade_percent * 100)}%`,
-            final_grade_scaled  : data.final_grade_scaled,
+            final_grade_scaled  : data.final_grade_scaled.toFixed(1).toString(),
             category_grades     : data.category_grades.map( _category_grades ),
             certificate_data    : _certificate_data( data )
         };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 import { useFetchCourseInfo } from '../hooks/useFetchCourseInfo';
 
@@ -55,3 +56,7 @@ export const AboutGrid = React.memo(( { courseId } ) => {
         </div>
     )
 });
+
+AboutGrid.propTypes = {
+    courseId : PropTypes.string.isRequired
+}

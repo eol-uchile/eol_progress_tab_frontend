@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Spinner, OverlayTrigger, Tooltip } from '@edx/paragon';
 
 export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive } ) => {
@@ -30,10 +31,10 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
                                 <th>{categ.category}</th>
                                 <td>{categ.weight}</td>
                                 <OverlayTrigger
-                                    key='final-grade-tooltip'
+                                    key='grade-tooltip'
                                     placement='bottom'
                                     overlay={
-                                        <Tooltip id={`tooltip-final-grade`}>
+                                        <Tooltip>
                                         Equivalente a una nota <strong>{categ.grade_scaled}</strong>* aproximadamente (escala 1.0 - 7.0).
                                         </Tooltip>
                                     }
@@ -46,10 +47,10 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
                     <tr className="table-footer">
                         <th scope="row" colSpan="2" className="text-right">Promedio Final</th>
                         <OverlayTrigger
-                            key='final-grade-tooltip'
+                            key='grade-tooltip'
                             placement='bottom'
                             overlay={
-                                <Tooltip id={`tooltip-final-grade`}>
+                                <Tooltip>
                                 Equivalente a una nota <strong>{student_data.final_grade_scaled}</strong> aproximadamente (escala 1.0 - 7.0).
                                 </Tooltip>
                             }
@@ -65,3 +66,8 @@ export const ProgressGrid = React.memo(( { studentState, setCategoryGradeActive 
         </>
     )
 });
+
+ProgressGrid.propTypes = {
+    studentState            : PropTypes.object.isRequired,
+    setCategoryGradeActive  : PropTypes.func.isRequired
+}

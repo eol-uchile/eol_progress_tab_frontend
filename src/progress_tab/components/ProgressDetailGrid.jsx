@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useScrollDetail } from '../hooks/useScrollDetail';
 import { useShowDroppedSubsections } from '../hooks/useShowDroppedSubsections';
 import { SubsectionItem } from './SubsectionItem';
@@ -32,3 +33,7 @@ export const ProgressDetailGrid = React.memo(( { categoryGrade } ) => {
         </div>
     )
 });
+
+ProgressDetailGrid.propTypes = {
+    categoryGrade : PropTypes.object.isRequired,
+}

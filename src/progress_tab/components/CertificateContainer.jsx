@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, Button, Image } from '@edx/paragon';
 import { useHandleCertificates } from '../hooks/useHandleCertificates';
 
@@ -42,3 +43,8 @@ export const CertificateContainer = React.memo(( { certificate, setStudentState 
         </Alert>
     )
 });
+
+CertificateContainer.propTypes = {
+    certificate     : PropTypes.object.isRequired,
+    setStudentState : PropTypes.func.isRequired
+}
