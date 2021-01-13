@@ -34,7 +34,7 @@ export const ProgressDetailGrid = React.memo(( { categoryGrade } ) => {
             { categoryGrade.detail.length == 0 && <p className="text-center text-muted">Aún no se han configurado ejercicios en esta evaluación</p> }
             { categoryGrade.detail.length > 0 && (
                 <>
-                    <p className="text-muted">A continuación se muestran los puntajes (por subsección) obtenidos en los ejercicios con <u>calificación activada</u>:</p>
+                    <p className="text-muted">A continuación se muestran los puntajes (por subsección) obtenidos en los ejercicios con <u>calificación activada</u>. La puntuación por ejercicio se muestra en el formato: <em>'Puntaje obtenido' / 'Puntaje máximo posible'</em>.</p>
                     {
                         categoryGrade.detail?.map( detail => (
                             <SubsectionItem detail={ detail } dropped_message={ categoryGrade.dropped_message } key={detail.url} />
