@@ -46,7 +46,7 @@ const _detail = d => ({
     url             : d.url,
     total_earned    : d.total_earned,
     total_possible  : d.total_possible,
-    percent         : `${Math.round(d.total_earned / d.total_possible * 100)}%`,
+    percent         : `${Math.round(d.total_percent * 100)}%`,
     problem_scores  : d.problem_scores.map( _problem_scores )
 });
 
