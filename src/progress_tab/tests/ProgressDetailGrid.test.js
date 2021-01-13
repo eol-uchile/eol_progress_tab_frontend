@@ -15,6 +15,7 @@ describe('Testing <ProgressDetailGrid /> App Component', () => {
         category        : 'category',
         weight          : '30%',
         drop_count      : 2,
+        min_count       : 3,
         dropped_message : 'dropped message',
         grade_percent   : '100%',
         grade_scaled    : '7.0',
@@ -104,6 +105,8 @@ describe('Testing <ProgressDetailGrid /> App Component', () => {
         expect( screen.getByText('calificación activada'));
         // drop_count > 0
         expect( screen.getByText('dropped message'));
+        // min_count (3) > detail.length (2)
+        expect( screen.getByText('Subsecciones pendientes: 1') ); // 3-2
 
     })
 
