@@ -40,14 +40,15 @@ const _category_grades = c => ({
 });
 
 const _detail = d => ({
-    subsection      : unescapeHTML(d.subsection_display_name),
-    due             : d.due ? date_format(d.due) : undefined,
-    attempted       : d.attempted,
-    url             : d.url,
-    total_earned    : d.total_earned,
-    total_possible  : d.total_possible,
-    percent         : `${Math.round(d.total_percent * 100)}%`,
-    problem_scores  : d.problem_scores.map( _problem_scores )
+    subsection          : unescapeHTML(d.subsection_display_name),
+    due                 : d.due ? date_format(d.due) : undefined,
+    show_problem_scores : d.show_problem_scores,
+    attempted           : d.attempted,
+    url                 : d.url,
+    total_earned        : d.total_earned,
+    total_possible      : d.total_possible,
+    percent             : `${Math.round(d.total_percent * 100)}%`,
+    problem_scores      : d.problem_scores.map( _problem_scores )
 });
 
 const _problem_scores = score => ({

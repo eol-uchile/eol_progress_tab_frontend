@@ -9,7 +9,7 @@ export const SubsectionItem = ( { detail, dropped_message }) => {
                 <a href={ detail.url } target="_blank" className="mr-2">
                     { detail.subsection }
                 </a>
-                ({ detail.total_earned }/{ detail.total_possible }) {detail.percent}
+                { detail.show_problem_scores && <span>({ detail.total_earned }/{ detail.total_possible }) {detail.percent}</span> } 
                 <OverlayTrigger
                         key='final-grade-tooltip'
                         placement='bottom'
@@ -31,9 +31,10 @@ export const SubsectionItem = ( { detail, dropped_message }) => {
             }
             <dl className="mt-1">
                 <dt>Puntuación de problemas:</dt>
-                { !detail.attempted && <dd><i>No se registran respuestas</i></dd> }
+                { !detail.attempted && detail.show_problem_scores && <dd><i>No se registran respuestas</i></dd> }
+                { !detail.show_problem_scores && <dd><i>Puntuaciones de problemas son escondidas.</i></dd> }
                 {
-                    detail.attempted && detail.problem_scores?.map( (score, index) => (
+                    detail.attempted && detail.show_problem_scores && detail.problem_scores?.map( (score, index) => (
                         <dd key={index}>
                             { score.earned }/{ score.possible }
                         </dd>
