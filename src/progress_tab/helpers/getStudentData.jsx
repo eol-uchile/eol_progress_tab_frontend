@@ -2,7 +2,7 @@ import { date_format, unescapeHTML } from "./utils";
 
 // Get student data
 export const getStudentData = async ( courseId, userId ) => {
-    const url = `/courses/${ courseId }/eol_progress_tab/student_data/${userId}`;
+    const url = `/courses/${ courseId }/eol_progress_tab/student_data/${userId}/`;
     const response = await fetch(url, { credentials: "same-origin" });
     if(response.status == 200) {
         const data = await response.json();
