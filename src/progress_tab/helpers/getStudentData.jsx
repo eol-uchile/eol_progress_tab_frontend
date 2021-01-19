@@ -45,14 +45,14 @@ const _detail = d => ({
     show_problem_scores : d.show_problem_scores,
     attempted           : d.attempted,
     url                 : d.url,
-    total_earned        : d.total_earned,
+    total_earned        : d.total_earned.toFixed(2).replace(/[.,]00$/, ""), // replace decimal .00 
     total_possible      : d.total_possible,
     percent             : `${Math.round(d.total_percent * 100)}%`,
     problem_scores      : d.problem_scores.map( _problem_scores )
 });
 
 const _problem_scores = score => ({
-    earned          : score.earned,
+    earned          : score.earned.toFixed(2).replace(/[.,]00$/, ""), // replace decimal .00 
     possible        : score.possible
 });
 
