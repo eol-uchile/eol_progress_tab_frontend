@@ -24,12 +24,16 @@ export const AboutGrid = React.memo(( { courseId } ) => {
                             { course.end_date }
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row" className="text-left">Esfuerzo estimado</th>
-                        <td className="text-right">
-                            { course.effort }
-                        </td>
-                    </tr>
+                    { 
+                        (course.effort != 'None' && course.effort != '') && (
+                            <tr>
+                                <th scope="row" className="text-left">Esfuerzo estimado</th>
+                                <td className="text-right">
+                                    { course.effort }
+                                </td>
+                            </tr>
+                        ) 
+                    }
                     <tr>
                         <th scope="row" className="text-left">Calificación Mínima de Aprobación</th>
                         <td className="text-right">
