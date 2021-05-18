@@ -15,4 +15,4 @@ services:
 networks:
   default:
       external:
-          name: juniper_default
+          name: koa_default

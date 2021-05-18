@@ -33,7 +33,7 @@ const _category_grades = c => ({
     weight          : `${(c.weight * 100)}%`,
     drop_count      : c.drop_count,
     min_count       : c.min_count,
-    dropped_message : _dropped_message( c.detail.length - c.drop_count ),
+    dropped_message : _dropped_message( c.min_count - c.drop_count ),
     grade_percent   : `${Math.round(c.grade_percent * 100)}%`,
     grade_scaled    : c.grade_scaled.toFixed(1).toString(),
     detail          : c.detail.map( _detail )

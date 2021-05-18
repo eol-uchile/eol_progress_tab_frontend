@@ -3,7 +3,7 @@ import { useEffect } from "react";
 export const useShowDroppedSubsections = ( categoryGrade ) => {
     useEffect(() => {
         // Show badge if category has drop_count and grades
-        if(categoryGrade.drop_count > 0 && categoryGrade.grade_percent != '0%'){
+        if(categoryGrade.drop_count > 0 && categoryGrade.detail.length > categoryGrade.drop_count && categoryGrade.grade_percent != '0%'){
             var subsections = [...categoryGrade.detail]; // Copy array without reference
     
             subsections.sort((a, b) => (a.total_earned / a.total_possible) - (b.total_earned / b.total_possible) );  // Sort asc
